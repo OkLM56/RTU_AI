@@ -112,11 +112,11 @@ def generate_game_tree(node, depth, max_depth):
         node.score = evaluate_state(node)
         return node
     
-    # Toujours utiliser les trois diviseurs, peu importe si le nombre est divisible
+    
     possible_divisors = [2, 3, 4]
     
     for divisor in possible_divisors:
-        # Arrondir au lieu de simplement diviser
+        #Round the numbers
         new_number = round(node.number / divisor)
         
         # Determine whose score to update
@@ -220,7 +220,7 @@ def ai_choose_move(current_number, player_score, ai_score, bank, use_alpha_beta=
     if root.best_move:
         return root.best_move, tree_generation_time + algo_time
     else:
-        # Fallback si aucun meilleur mouvement n'est trouvé (ne devrait pas arriver en jeu normal)
+        
         divisor = random.choice([2, 3, 4])
         new_number = round(current_number / divisor)
         child = GameNode(new_number, player_score, ai_score, bank, True)
@@ -428,7 +428,7 @@ class GameApp:
                 return
             self.current_number = int(self.number_choice_var.get())
             self.player_turn = True
-        # Si l'IA commence, on a déjà choisi un nombre aléatoire et défini player_turn à False
+        
         
         # Clear the game frame
         for widget in self.game_frame.winfo_children():
@@ -480,10 +480,10 @@ class GameApp:
         """Handle the player's turn"""
         tk.Label(parent_frame, text="Player's Turn", font=("Arial", 14, "bold")).pack(pady=5)
         
-        # Toujours offrir les trois diviseurs
+        
         valid_divisors = [2, 3, 4]
         
-        # Afficher des informations sur la division
+        
         info_frame = tk.Frame(parent_frame)
         info_frame.pack(pady=5)
         
@@ -526,7 +526,7 @@ class GameApp:
             
         divisor = self.move_choice.get()
         
-        # Utiliser l'arrondi au lieu de la division entière
+        # Round the numbers
         self.current_number = round(self.current_number / divisor)
         
         # Apply game rules
